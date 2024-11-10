@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --bg-color: #F8F9FA; /* cinza claro */
+    --icons-color: #A8D5BA;/* verde menta */
+    --nav-color: #6C8EA4; /* azul acizentado */
+    --title-color: #2E8B57; /* verde esmeralda */
+    --text-color: #355070; /* azul petróleo */
+}
+
+body{
+	background-color: var(--bg-color);
+	font-family: 'Open Sans', sans-serif;
+	background-image: url(../img/bg_img.png);
+    background-attachment: fixed;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+h2{
+	font-family: 'Merriweather', serif;
+}
+
+.container{
+	background-color: var(--icons-color);
+	max-width: 720px;
+	color: var(--text-color);
+	font-weight: bold;
+	box-shadow: 0px 0px 0px var(--nav-color), 
+				0 0 25px var(--nav-color),
+				0 0 50px var(--title-color);
+	opacity: 0.8;
+}
+
+.btn{
+	font-weight: bold;
+	padding: 5px 10px;
+}
