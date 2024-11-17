@@ -23,7 +23,7 @@
     		<div class="collapse navbar-collapse" id="navbarNav">
       			<ul class="navbar-nav ms-auto">
         			<li class="nav-item">
-          				<a class="nav-link" href="#">Início</a>
+          				<a class="nav-link" href="login">Início</a>
         			</li>
         			<li class="nav-item">
           				<a class="nav-link" href="#">Gráficos</a>
@@ -37,7 +37,8 @@
 	</nav>
 	
 	<section>
-		
+		<h1>Cadastrar um Usuário</h1>
+		<a href="cadastro_user.jsp">Cadastrar</a>
 	</section>
 	
 </body>

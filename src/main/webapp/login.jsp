@@ -16,7 +16,7 @@
 	<div class="container rounded-3 mt-5 mx-auto p-4">
 	<br />
   		<h2 class="text-center">Login</h2>
-  		<form action="/action_page.php">
+  		<form action="inicio">
     		<div class="mb-3 mt-3">
       			<label for="email">Email:</label>
       			<input type="email" class="form-control" id="email" placeholder="Insira o email" name="email">
@@ -32,8 +32,8 @@
     		</div>
     		<br />
   			<div class="d-flex justify-content-between">
-    			<button type="button" class="btn bg-light">Cadastrar</button>
-    			<button type="button" class="btn btn-primary">Logar</button>
+  				<a href="" class="btn bg-light">Cadastrar</a>
+    			<button type="submit" class="btn btn-primary">Entrar</button>
 			</div>
   		  </form>
 	</div>
