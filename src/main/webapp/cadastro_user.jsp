@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <title>Cadastrar Usuário</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- Adicionando JQuery API de CEP -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -42,7 +47,8 @@
 		<div class="container rounded-3 mt-5 mx-auto p-4">
 			<br />
 			<h2 class="text-center">Cadastrar um Usuário</h2>
-			<form id="form_cad" action="insert_user">
+			<form id="form_cad" action="<%=request.getContextPath()%>/insert"
+				method="post">
 				<div class="mb-3 mt-3">
 					<label for="nome">Nome:</label> <input type="text"
 						class="form-control" id="nome" placeholder="Insira o nome"
@@ -64,7 +70,7 @@
 						class="form-control" id="cpf" placeholder="Insira o CPF"
 						name="cpf" maxlength="14" autocomplete="off">
 				</div>
-				
+
 				<div class="mb-3 mt-3">
 					<label for="tel">Telefone:</label> <input type="text"
 						class="form-control" id="tel" placeholder="Insira o Telefone"
@@ -108,7 +114,7 @@
 		</div>
 	</section>
 
-<script src="scripts/input_cadastro.js"></script>
+	<script src="scripts/input_cadastro.js"></script>
 
 
 </body>
