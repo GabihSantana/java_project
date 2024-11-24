@@ -1,6 +1,7 @@
 package model;
 
 public class User {
+	private String idUsuario;
 	private String nome;
 	private String email;
 	private String senha;
@@ -16,8 +17,10 @@ public class User {
 		super();
 	}
 
-	public User(String nome, String email, String senha, String cpf, String endereco, String bairro, String cidade,
+	public User(String id,String nome, String email, String senha, String cpf, String endereco, String bairro, String cidade,
 			String uf, String cep, String telefone) {
+		super();
+		this.idUsuario = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
@@ -28,6 +31,14 @@ public class User {
 		this.uf = uf;
 		this.cep = cep;
 		this.telefone = telefone;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNome() {
@@ -109,5 +120,7 @@ public class User {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
+	
 
 }

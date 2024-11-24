@@ -3,6 +3,8 @@ package control;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +23,7 @@ public class UserServlet extends HttpServlet {
 	User usuario = new User();
 
 	public UserServlet() {
-		this.UserQuery = new DBQueries("usuarios", "email, senha, nome, cpf, endereco, bairro, cidade, uf, cep, telefone", "idUsuario");
+		this.UserQuery = new DBQueries("usuarios", "idUsuario, email, senha, nome, cpf, endereco, bairro, cidade, uf, cep, telefone", "idUsuario");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +68,7 @@ public class UserServlet extends HttpServlet {
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
+			break;
 		default:
 		    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Página não encontrada");
 		    break;
@@ -112,15 +115,6 @@ public class UserServlet extends HttpServlet {
 		response.sendRedirect("list");
 	}
 
-	private void selectUser(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		ResultSet rs = UserQuery.select("");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro_user.jsp");
-		response.sendRedirect("list");
-		request.setAttribute("user", rs);
-		dispatcher.forward(request, response);
-	}
-
 	private void updateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		usuario.setNome(request.getParameter("nome"));
@@ -140,14 +134,47 @@ public class UserServlet extends HttpServlet {
 
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
-	    try (ResultSet rs = UserQuery.select("")) {
-	        request.setAttribute("user", rs);
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("inicio.jsp");
-	        dispatcher.forward(request, response); // Apenas encaminha
+		
+	    List<User> userList = new ArrayList<>(); // lista p armazenar o retorno
+
+	    try (ResultSet rs = UserQuery.select("")) { 
+	        while (rs.next()) {
+	            User usuario = new User();
+	            usuario.setIdUsuario(rs.getString("idUsuario")); 
+	            usuario.setNome(rs.getString("nome")); 
+	            usuario.setEmail(rs.getString("email"));
+	            usuario.setSenha(rs.getString("senha"));
+	            usuario.setCpf(rs.getString("cpf"));
+	            usuario.setTelefone(rs.getString("telefone"));
+	            usuario.setCep(rs.getString("cep"));
+	            usuario.setEndereco(rs.getString("endereco"));
+	            usuario.setCidade(rs.getString("cidade"));
+	            usuario.setBairro(rs.getString("bairro"));
+	            usuario.setUf(rs.getString("uf"));
+	            
+	            userList.add(usuario);
+	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
+	        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Erro ao acessar o banco de dados.");
+	        return; 
 	    }
+	    // atributo da requisição
+	    request.setAttribute("userList", userList);
+	    // Encaminha para o JSP
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("listar_user.jsp");
+	    dispatcher.forward(request, response);
 	}
+	
+	private void selectUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ResultSet rs = UserQuery.select("");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro_user.jsp");
+		response.sendRedirect("list");
+		request.setAttribute("user", rs);
+		dispatcher.forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.doGet(request, response);
