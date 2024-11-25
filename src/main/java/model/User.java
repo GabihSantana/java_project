@@ -19,8 +19,21 @@ public class User {
 
 	public User(String id,String nome, String email, String senha, String cpf, String endereco, String bairro, String cidade,
 			String uf, String cep, String telefone) {
-		super();
 		this.idUsuario = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.cpf = cpf;
+		this.endereco = endereco;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.cep = cep;
+		this.telefone = telefone;
+	}
+	
+	public User(String nome, String email, String senha, String cpf, String endereco, String bairro, String cidade,
+			String uf, String cep, String telefone) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;

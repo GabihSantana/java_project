@@ -12,13 +12,9 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- Adicionando JQuery API de CEP -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="style/style_main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="style/main_style.css">
 </head>
 <body>
 	<!-- Navbar -->
@@ -47,7 +43,7 @@
 		<div class="container rounded-3 mt-5 mx-auto p-4">
 			<br />
 			<h2 class="text-center">Cadastrar um Usuário</h2>
-			<form id="form_cad" action="<%=request.getContextPath()%>/insert"
+			<form id="form_cad" action="new" method="post"
 				method="post">
 				<div class="mb-3 mt-3">
 					<label for="nome">Nome:</label> <input type="text"
@@ -114,8 +110,6 @@
 		</div>
 	</section>
 
-	<script src="scripts/input_cadastro.js"></script>
-
-
+	<script src="scripts/form_fields.js"></script>
 </body>
 </html>

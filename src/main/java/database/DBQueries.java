@@ -3,6 +3,9 @@ package database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DBQueries {
 	private Statement statement =  null;
@@ -84,18 +87,32 @@ public class DBQueries {
 	// Verifica se o insert corresponde a todos os campos da tabela
 	public boolean incompleteValues(String[] values) {
 		if (values.length != this.fieldsName.length){
+			 System.out.println("Campos esperados: " + Arrays.toString(this.fieldsName));
+			for (String value : values) {
+				System.out.println(value);
+			}
 			System.out.println("\n A quantidade de campos é diferente da quantidade de valores!");
 			return true;
 		}
 		else return false;
 	}
 	
+	// remove 'idUsuario' da lista de campos
+	private String[] removeIdUsuario(String[] fields) {
+	    List<String> fieldList = new ArrayList<>(Arrays.asList(fields));
+	    
+	    fieldList.remove("idUsuario");
+	    return fieldList.toArray(new String[0]);
+	}
+	
 	public int insert(String[] values) {
-		if (incompleteValues(values)) {
-			return 0;
-		}
+		String[] filteredFields = removeIdUsuario(this.fieldsName);
+		if (values == null || values.length != filteredFields.length) {
+	        System.out.println("A quantidade de valores não corresponde à quantidade de campos.");
+	        return 0;
+	    }
 		else {
-			String sql = "INSERT INTO " + this.tableName + " ( "+ this.strFields(this.fieldsName, ", ");
+			String sql = "INSERT INTO " + this.tableName + " ( "+ this.strFields(filteredFields, ", ");
 			sql += ") VALUES ('" + strFields(values, "','")+"')";
 			System.out.println("Query gerada: " + sql);
 			return (this.execute(sql));
